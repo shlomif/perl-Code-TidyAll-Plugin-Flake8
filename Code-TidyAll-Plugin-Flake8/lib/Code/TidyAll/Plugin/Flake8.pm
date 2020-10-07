@@ -15,8 +15,10 @@ def _py_check(fn):
     app.run([fn])
     return ((app.result_count > 0) or app.catastrophic_failure)
 EOF
+    ## no critic
     if ( ( eval "use Inline Python => \$code" ) and !$@ )
     {
+        ## use critic
         $_check = sub { return _py_check(shift); };
     }
     else
