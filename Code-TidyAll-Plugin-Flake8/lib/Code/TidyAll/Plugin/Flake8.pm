@@ -43,6 +43,8 @@ sub validate_file
 
 1;
 
+__END__
+
 =head1 NAME
 
 Code::TidyAll::Plugin::Flake8 - run flake8 using Code::TidyAll
@@ -62,3 +64,5 @@ This speeds up the flake8 python tool ( L<http://flake8.pycqa.org/en/latest/>
 It was originally written for use by PySolFC
 ( L<http://pysolfc.sourceforge.net/> ), an open suite of card solitaire
 games.
+
+=cut
