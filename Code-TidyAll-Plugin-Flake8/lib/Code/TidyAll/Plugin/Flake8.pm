@@ -34,9 +34,9 @@ extends 'Code::TidyAll::Plugin';
 sub validate_file
 {
     my ( $self, $fn ) = @_;
-    if ( $_check->($fn) )
+    if ( my $error = $_check->($fn) )
     {
-        die 'not valid';
+        die qq#flake8 validation failed for the file "$fn" ; error="$error"#;
     }
     return;
 }
