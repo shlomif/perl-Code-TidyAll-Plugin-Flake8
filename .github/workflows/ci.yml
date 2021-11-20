@@ -1,0 +1,29 @@
+name: CI Dzil
+
+on:
+    pull_request:
+        branches: '*'
+    push:
+        branches: '*'
+
+jobs:
+    perl-job:
+        container:
+            image: perldocker/perl-tester:${{ matrix.perl-version }}     # https://hub.docker.com/r/perldocker/perl-tester
+        name: Perl ${{ matrix.perl-version }}
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Regular tests
+                run: |
+                    cd Code-TidyAll-Plugin-Flake8/
+                    dzil authordeps --missing | cpanm --notest
+                    dzil listdeps --author --missing | cpanm --notest
+                    dzil test --author --release
+        strategy:
+            fail-fast: false
+            matrix:
+                perl-version:
+                    - '5.30'
+#          - '5.32'
+#          - 'latest'
