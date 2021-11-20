@@ -15,7 +15,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Regular tests
-                run: |
+              run: |
                     cd Code-TidyAll-Plugin-Flake8/
                     dzil authordeps --missing | cpanm --notest
                     dzil listdeps --author --missing | cpanm --notest
